@@ -1,0 +1,132 @@
+
+{
+    
+    "menu": [
+      {
+        "id": 1,
+        "category": "قهوه‌ها",
+        "photo":"coffee.png",
+        "items": [
+          {
+            "id": 101,
+            "title": "اسپرسو",
+            "description": "یک شات قوی و غلیظ از قهوه تازه دم",
+            "price": 35000,
+            "photo":"shaik.png"
+          },
+          {
+            "id": 102,
+            "title": "کاپوچینو",
+            "description": "ترکیبی از اسپرسو، شیر بخارپز شده و فوم شیر",
+            "price": 45000,
+            "photo":"shaik.png"
+          },
+          {
+            "id": 103,
+            "title": "لاته",
+            "description": "اسپرسو با شیر بخارپز شده و لایه نازکی از فوم",
+            "price": 48000,
+            "photo":"shaik.png"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "category": "چای‌ها",
+        "photo":"tea.png",
+        "items": [
+          {
+            "id": 201,
+            "title": "چای سبز",
+            "description": "چای سبز تازه دم با خواص آنتی‌اکسیدانی",
+            "price": 30000,
+            "photo":"shaik.png"
+          },
+          {
+            "id": 202,
+            "title": "چای ماسالا",
+            "description": "چای سیاه هندی با ادویه‌جات معطر",
+            "price": 38000,
+            "photo":"shaik.png"
+          },
+          {
+            "id": 203,
+            "title": "دمنوش بابونه",
+            "description": "دمنوش آرامش‌بخش گل بابونه",
+            "price": 32000,
+            "photo":"shaik.png"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "category": "دسرها",
+        "photo":"Dessers.png",
+        "items": [
+          {
+            "id": 301,
+            "title": "تیرامیسو",
+            "description": "دسر ایتالیایی با لایه‌های بیسکویت، پنیر ماسکارپونه و قهوه",
+            "price": 55000,
+            "photo":"shaik.png"
+          },
+          {
+            "id": 302,
+            "title": "چیزکیک",
+            "description": "کیک پنیری خامه‌ای با پایه بیسکویت",
+            "price": 50000,
+            "photo":"shaik.png"
+          },
+          {
+            "id": 303,
+            "title": "براونی شکلاتی",
+            "description": "کیک شکلاتی غنی با روکش گاناش",
+            "price": 40000,
+            "photo":"shaik.png"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "category": "نوشیدنی‌های سرد",
+        "photo":"cocktail.png",
+        "items": [
+          {
+            "id": 401,
+            "title": "آیس لاته",
+            "description": "قهوه سرد با شیر و یخ",
+            "price": 52000,
+            "photo":"shaik.png"
+          },
+          {
+            "id": 402,
+            "title": "موهیتو",
+            "description": "نوشیدنی خنک با نعناع تازه، لیمو و سودا",
+            "price": 48000,
+            "photo":"shaik.png"
+          },
+          {
+            "id": 403,
+            "title": "اسموتی توت فرنگی",
+            "description": "اسموتی خامه‌ای با توت فرنگی تازه",
+            "price": 45000,
+            "photo":"shaik.png"
+          },
+          {
+            "id": 404,
+            "title": "شیک بادام زمینی",
+            "description": "۵۰۰ میلی لیتر، بستنی وانیلی، کره بادام زمینی",
+            "price": 140000,
+            "photo":"shaik.png"
+          },
+          {
+            "id": 405,
+            "title": "شیک بادام زمینی",
+            "description": "۵۰۰ میلی لیتر، بستنی وانیلی، کره بادام زمینی",
+            "price": 140000,
+            "photo":"shaik.png"
+          }
+        ]
+      }
+    ]
+  }
