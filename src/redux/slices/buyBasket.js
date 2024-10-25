@@ -5,6 +5,7 @@ const initialState = {
   value: [],
   basketBuyLength: 0,
   itemCounts: {},
+  statusBasket: true,
 };
 
 const buyBasket = createSlice({
