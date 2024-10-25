@@ -324,7 +324,7 @@ const ShoppingCart = ({
         <div className={classes.divDialog}>
           <DialogTitle>
             <div className={classes.headerModal}>
-              <Typography style={{ fontWeight: "bold" }}>
+              <Typography style={{ fontWeight: "bold",fontFamily:"Shabnam" }}>
                 سبد خرید ({basketLength}){" "}
               </Typography>{" "}
             </div>
@@ -335,7 +335,7 @@ const ShoppingCart = ({
                 <div key={index} className={classes.item}>
                   <div className={classes.itemTitle}>
                     <div>
-                      <Typography variant="body1">{value.title}</Typography>
+                      <Typography style={{fontFamily:"Shabnam"}} variant="body1">{value.title}</Typography>
                       <Typography variant="body2" className={classes.itemPrice}>
                         {value.price} تومان
                       </Typography>
@@ -374,7 +374,7 @@ const ShoppingCart = ({
               ))}
               <Divider />
               <div className={classes.footerModal}>
-                <Typography variant="h6">
+                <Typography style={{fontFamily:"Shabnam"}} variant="h6">
                   هزینه کل: {persianNumber} تومان
                 </Typography>
               </div>
