@@ -124,6 +124,7 @@ const useStyles = makeStyles((theme) => ({
   },
   itemPrice: {
     color: theme.palette.text.secondary,
+    fontFamily:"inherit"
   },
   controls: {
     display: "flex",
@@ -255,7 +256,7 @@ const ShoppingCart = ({
                       <div className={classes.itemTitle}>
                         <div>
                           <Typography
-                            style={{ fontWeight: "bold" }}
+                            style={{ fontWeight: "bold",fontFamily:"inherit" }}
                             variant="body1"
                           >
                             {value.title}
@@ -312,7 +313,7 @@ const ShoppingCart = ({
           )}
           <Divider />
           <div className={classes.footer}>
-            <Typography variant="h6">هزینه کل: {persianNumber} تومان</Typography>
+            <Typography style={{fontFamily:"inherit"}} variant="h6">هزینه کل: {persianNumber} تومان</Typography>
             <Button onClick={ff} className={classes.button}>
               تکمیل سفارش
             </Button>
