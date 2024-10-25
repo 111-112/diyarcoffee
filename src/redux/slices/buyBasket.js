@@ -101,7 +101,7 @@ export const getTotalPrice = createSelector(
   (state) => state.entities.buyBasket.value,
   (items) =>
     Array.isArray(items)
-      ? items.reduce((total, item) => total + item.price * item.quantity, 0)
+      ? items.reduce((total, item) => total + item.unitPrice * item.quantity, 0)
       : 0
 );
 
