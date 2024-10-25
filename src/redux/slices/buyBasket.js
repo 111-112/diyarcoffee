@@ -5,6 +5,7 @@ const initialState = {
   value: [],
   basketBuyLength: 0,
   itemCounts: {},
+  statusBasket: true,
 };
 
 const buyBasket = createSlice({
@@ -13,8 +14,8 @@ const buyBasket = createSlice({
   reducers: {
     BASKET_ADDED: (state, action) =>
       produce(state, (draft) => {
-        const { id, title, description, price, photo, quantity } =
-          action.payload;
+        const { id, title, description, price, photo, quantity, unitPrice } =
+          action.payload; 
         /*if (!draft.itemCounts[id]) {
           draft.itemCounts[id] = 0;
         }
@@ -28,14 +29,20 @@ const buyBasket = createSlice({
         const existingItem = draft.value.find(
           (item) => item.id === action.payload.id
         );
+
         if (existingItem) {
           existingItem.quantity += 1;
+          console.log(existingItem.price, existingItem.unitPrice);
+          existingItem.price = existingItem.unitPrice * existingItem.quantity;
+
+          // draft.value.price *= existingItem.quantity;
         } else {
           draft.value.push({
             id,
             title,
             description,
             price,
+            unitPrice,
             photo,
             quantity: 1,
           });
@@ -56,6 +63,7 @@ const buyBasket = createSlice({
           const item = draft.value[index];
           if (item.quantity > 1) {
             item.quantity -= 1;
+            item.price -= item.unitPrice;
           } else {
             draft.value.splice(index, 1);
           }
@@ -67,10 +75,14 @@ const buyBasket = createSlice({
         );
         // console.log("uuu",draft.basketBuyLength);
       }),
+    SWITCH_STATUS_BASKET: (state, action) =>
+      produce(state, (draft) => {
+        draft.statusBasket = action.payload.statusBasket;
+      }),
   },
 });
 
-export const { BASKET_ADDED, BASKET_REMOVE } = buyBasket.actions;
+export const { BASKET_ADDED, BASKET_REMOVE,SWITCH_STATUS_BASKET } = buyBasket.actions;
 
 export const getBuyBasket = createSelector(
   (state) => state.entities.buyBasket,
@@ -79,6 +91,10 @@ export const getBuyBasket = createSelector(
 export const getBasketBuyLength = createSelector(
   (state) => state.entities.buyBasket,
   (buyBasket) => buyBasket.basketBuyLength
+);
+export const getStatusBasket = createSelector(
+  (state) => state.entities.buyBasket,
+  (buyBasket) => buyBasket.statusBasket
 );
 
 export const getTotalPrice = createSelector(

@@ -10,6 +10,8 @@ import {
   getTotalPrice,
   getBasketBuyLength,
   PRICE_SUM,
+  getStatusBasket,
+  SWITCH_STATUS_BASKET,
 } from "../../redux/slices/buyBasket";
 import {
   Button,
@@ -62,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
     display: "grid",
+    height:"fit-content",
     width: 400,
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
@@ -71,13 +74,20 @@ const useStyles = makeStyles((theme) => ({
     padding: "15px",
     width: "75%",
     display: "grid",
-    height: "39ch",
+    height: "44ch",
     borderRadius: "10px",
     [theme.breakpoints.down("lg")]: {
       padding: "15px",
       width: "75%",
       display: "grid",
-      height: "inherit",
+      
+      borderRadius: "10px",
+    },
+    [theme.breakpoints.down("sm")]: {
+      padding: "15px",
+      width: "75%",
+      display: "grid",
+      height:"fit-content",
       borderRadius: "10px",
     },
   },
@@ -135,6 +145,8 @@ const CoffeeList = () => {
   const status = useSelector((state) => state.entities.status.value);
   const getBuyBasket = useSelector((state) => state.entities.buyBasket.value);
   const totalPrice = useSelector(getTotalPrice);
+  const statusBasket = useSelector(getStatusBasket);
+  const getCategory = useSelector((state) => state.entities.category.value);
   const basketBuyLength2 = useSelector(
     (state) => state.entities.buyBasket.basketBuyLength
   );
@@ -154,13 +166,16 @@ const CoffeeList = () => {
     }
   };
   useEffect(() => {
-    setStatusItem(true);
+    //setStatusItem(true);
+    if ( basketBuyLength2 == 0) {
+      dispatch(SWITCH_STATUS_BASKET({ statusBasket: false }));
+    }
     localStorage.setItem("itemCounts", JSON.stringify(itemCounts));
     console.log(getBuyBasket);
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:5000/menuData");
-        dispatch(setCategory(response.data));
+        dispatch(setCategory(response.data.menu));
         setMenuData(response.data.menu);
         console.log(menuData);
       } catch (error) {
@@ -192,40 +207,27 @@ const CoffeeList = () => {
     return () => {
       window.removeEventListener("resize", handleResize); // حذف event listener برای جلوگیری از memory leak
     };
-  }, [dispatch, itemCounts]);
+  }, [dispatch]);
 
-  const handleClose = () => {
-    setOpenModal(false);
-  };
-
-  const handleTableSelection = (value) => {
-    dispatch(setStatus({ status: value }));
-    handleClose();
-  };
-
-  const addItem = (id, title, description, price, photo) => {
+  const addItem = (id, title, description, price, unitPrice, photo) => {
     setStatusItem(true);
     /* const data = Object.values(itemCounts);
     setBasketBuyLength(
       data.reduce((accumulator, currentValue) => accumulator + currentValue, 1)
     );*/
-    console.log(basketBuyLength2);
-    console.log(itemCounts2);
-    /* setItemCounts((prevCounts) => ({
-      ...prevCounts,
-      [id]: (prevCounts[id] || 0) + 1,
-    }));*/
     setItemCounts((prevCounts) => {
       const newCounts = { ...prevCounts, [id]: (prevCounts[id] || 0) + 1 };
       localStorage.setItem("itemCounts", JSON.stringify(newCounts));
       return newCounts;
     });
+    dispatch(SWITCH_STATUS_BASKET({ statusBasket: true }));
     dispatch(
       BASKET_ADDED({
         id,
         title,
         description,
         price,
+        unitPrice,
         photo,
         quantity: (itemCounts[id] || 0) + 1,
       })
@@ -233,10 +235,10 @@ const CoffeeList = () => {
   };
 
   const removeItem = (id) => {
-    /* setItemCounts((prevCounts) => ({
-      ...prevCounts,
-      [id]: (prevCounts[id] || 0) > 0 ? prevCounts[id] - 1 : 0,
-    }));*/
+    console.log(basketBuyLength2);
+    if (basketBuyLength2 == 1 || basketBuyLength2 == 0) {
+      dispatch(SWITCH_STATUS_BASKET({ statusBasket: false }));
+    }
     setItemCounts((prevCounts) => {
       const newCounts = {
         ...prevCounts,
@@ -362,6 +364,7 @@ const CoffeeList = () => {
                             item.title,
                             item.description,
                             item.price,
+                            item.unitPrice,
                             item.photo
                           )
                         }
@@ -396,7 +399,7 @@ const CoffeeList = () => {
         totalPrice={totalPrice}
         addItem={addItem}
         removeItem={removeItem}
-        statusItem={statusItem}
+        statusItem={statusBasket}
         basketLength={basketBuyLength2}
       />
 

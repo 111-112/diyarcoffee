@@ -12,6 +12,7 @@
             "title": "اسپرسو",
             "description": "یک شات قوی و غلیظ از قهوه تازه دم",
             "price": 35000,
+            "unitPrice": 35000,
             "photo":"shaik.png"
           },
           {
@@ -19,6 +20,7 @@
             "title": "کاپوچینو",
             "description": "ترکیبی از اسپرسو، شیر بخارپز شده و فوم شیر",
             "price": 45000,
+            "unitPrice": 45000,
             "photo":"shaik.png"
           },
           {
@@ -26,6 +28,7 @@
             "title": "لاته",
             "description": "اسپرسو با شیر بخارپز شده و لایه نازکی از فوم",
             "price": 48000,
+            "unitPrice": 48000,
             "photo":"shaik.png"
           }
         ]
@@ -40,6 +43,7 @@
             "title": "چای سبز",
             "description": "چای سبز تازه دم با خواص آنتی‌اکسیدانی",
             "price": 30000,
+            "unitPrice": 30000,
             "photo":"shaik.png"
           },
           {
@@ -47,6 +51,7 @@
             "title": "چای ماسالا",
             "description": "چای سیاه هندی با ادویه‌جات معطر",
             "price": 38000,
+            "unitPrice": 38000,
             "photo":"shaik.png"
           },
           {
@@ -54,6 +59,7 @@
             "title": "دمنوش بابونه",
             "description": "دمنوش آرامش‌بخش گل بابونه",
             "price": 32000,
+            "unitPrice": 32000,
             "photo":"shaik.png"
           }
         ]
@@ -68,6 +74,7 @@
             "title": "تیرامیسو",
             "description": "دسر ایتالیایی با لایه‌های بیسکویت، پنیر ماسکارپونه و قهوه",
             "price": 55000,
+            "unitPrice": 55000,
             "photo":"shaik.png"
           },
           {
@@ -75,6 +82,7 @@
             "title": "چیزکیک",
             "description": "کیک پنیری خامه‌ای با پایه بیسکویت",
             "price": 50000,
+            "unitPrice": 50000,
             "photo":"shaik.png"
           },
           {
@@ -82,6 +90,7 @@
             "title": "براونی شکلاتی",
             "description": "کیک شکلاتی غنی با روکش گاناش",
             "price": 40000,
+            "unitPrice": 40000,
             "photo":"shaik.png"
           }
         ]
@@ -96,6 +105,7 @@
             "title": "آیس لاته",
             "description": "قهوه سرد با شیر و یخ",
             "price": 52000,
+            "unitPrice": 58000,
             "photo":"shaik.png"
           },
           {
@@ -103,6 +113,7 @@
             "title": "موهیتو",
             "description": "نوشیدنی خنک با نعناع تازه، لیمو و سودا",
             "price": 48000,
+            "unitPrice": 48000,
             "photo":"shaik.png"
           },
           {
@@ -110,6 +121,7 @@
             "title": "اسموتی توت فرنگی",
             "description": "اسموتی خامه‌ای با توت فرنگی تازه",
             "price": 45000,
+            "unitPrice": 48000,
             "photo":"shaik.png"
           },
           {
@@ -117,6 +129,7 @@
             "title": "شیک بادام زمینی",
             "description": "۵۰۰ میلی لیتر، بستنی وانیلی، کره بادام زمینی",
             "price": 140000,
+            "unitPrice": 140000,
             "photo":"shaik.png"
           },
           {
@@ -124,6 +137,7 @@
             "title": "شیک بادام زمینی",
             "description": "۵۰۰ میلی لیتر، بستنی وانیلی، کره بادام زمینی",
             "price": 140000,
+            "unitPrice": 140000,
             "photo":"shaik.png"
           }
         ]

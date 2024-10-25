@@ -17,9 +17,13 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   BASKET_ADDED,
   BASKET_REMOVE,
+  SWITCH_STATUS_BASKET,
+  getStatusBasket,
   getTotalPrice,
 } from "../../redux/slices/buyBasket";
 import { useNavigate } from "react-router-dom";
+import basketEmpty from "../../assets/images/logo/basketEmpty.png";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,21 +40,21 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    [theme.breakpoints.down("xs")]:{
+    [theme.breakpoints.down("xs")]: {
       width: "50%",
-    padding: "25%",
-    textAlign: "center",
-    height: "100%",
-    display: "flex",
-    justifyContent: "center",
-    backgroundColor: theme.palette.background.paper,
-    margin: "36px 0px 20px 20px",
-    borderRadius: "10px",
-    boxShadow: theme.shadows[5],
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    }
+      padding: "25%",
+      textAlign: "center",
+      height: "100%",
+      display: "flex",
+      justifyContent: "center",
+      backgroundColor: theme.palette.background.paper,
+      margin: "36px 0px 20px 20px",
+      borderRadius: "10px",
+      boxShadow: theme.shadows[5],
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    },
   },
   header: {
     backgroundColor: "#faebd7",
@@ -108,12 +112,40 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     backgroundColor: "#a27356",
     fontWeight: "bold",
-    width: "inherit",
+    width: "30%",
     color: "#ffffff",
+    boxShadow:
+      "0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12)",
     "&:hover": {
       backgroundColor: "#7e5841",
     },
+    [theme.breakpoints.down("md")]: {
+      marginTop: theme.spacing(2),
+      boxShadow:
+        "0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12)",
+      backgroundColor: "#a27356",
+      fontWeight: "bold",
+      width: "50%",
+      color: "#ffffff",
+      "&:hover": {
+        backgroundColor: "#7e5841",
+      },
+    },
   },
+  btnPlusMinus:{
+   
+    boxShadow:
+      "0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12)",
+    border: "initial",
+    borderRadius: "50%",
+    backgroundColor: "#ffffff",
+    color: "#a27356",
+    "&:hover": {
+      backgroundColor: "#a27356",
+      color: "white",
+    },
+    
+  }
 }));
 
 const BuyBasketPage = () => {
@@ -125,6 +157,7 @@ const BuyBasketPage = () => {
   const status = useSelector((state) => state.entities.status.value);
   const getBuyBasket = useSelector((state) => state.entities.buyBasket.value);
   const totalPrice = useSelector(getTotalPrice);
+  const statusBasket = useSelector(getStatusBasket);
   const basketBuyLength2 = useSelector(
     (state) => state.entities.buyBasket.basketBuyLength
   );
@@ -139,6 +172,9 @@ const BuyBasketPage = () => {
 
   useEffect(() => {
     setData(getBuyBasket);
+    if ( basketBuyLength2 == 0) {
+      dispatch(SWITCH_STATUS_BASKET({ statusBasket: false }));
+    }
   }, [getBuyBasket]);
   const dd = () => {
     console.log(getBuyBasket);
@@ -205,7 +241,7 @@ const BuyBasketPage = () => {
   };
 
   const ff = () => {
-    console.log("status",status);
+    console.log("status", status);
     nav("/order/checkout");
   };
 
@@ -215,51 +251,75 @@ const BuyBasketPage = () => {
         سبد خرید ({basketBuyLength2})
       </Typography>
 
-      <div className={classes.body}>
-        {Array.isArray(getBuyBasket) &&
-          getBuyBasket.map((value, index) => (
-            <div key={index} className={classes.item}>
-              <div className={classes.itemTitle}>
-                <div>
-
-                <Typography style={{display:"flex",fontWeight: "bold",fontSize: "large"}} variant="body1">{value.title}</Typography>
-                <Typography style={{display:"flex"}} variant="body2" className={classes.itemPrice}>
-                {value.price} تومان
-              </Typography>
+      {statusBasket ? (
+        <div className={classes.body}>
+          {Array.isArray(getBuyBasket) &&
+            getBuyBasket.map((value, index) => (
+              <div key={index} className={classes.item}>
+                <div className={classes.itemTitle}>
+                  <div>
+                    <Typography
+                      style={{
+                        display: "flex",
+                        fontWeight: "bold",
+                        fontSize: "large",
+                        position:"relative",
+                        
+                      }}
+                      variant="body1"
+                    >
+                      {value.title}
+                    </Typography>
+                    <Typography
+                      style={{ display: "flex" }}
+                      variant="body2"
+                      className={classes.itemPrice}
+                    >
+                      {value.price} تومان
+                    </Typography>
+                  </div>
+                  <div className={classes.controls}>
+                    <IconButton
+                      onClick={() => removeItem(value.id)}
+                      size="small"
+                      color="primary"
+                      className={classes.btnPlusMinus}
+                    >
+                      <RemoveIcon />
+                    </IconButton>
+                    <Typography className={classes.quantity}>
+                      {value.quantity}
+                    </Typography>
+                    <IconButton
+                      onClick={() =>
+                        addItem(
+                          value.id,
+                          value.title,
+                          value.description,
+                          value.price,
+                          value.photo
+                        )
+                      }
+                      size="small"
+                      color="primary"
+                      className={classes.btnPlusMinus}
+                    >
+                      <AddIcon />
+                    </IconButton>
+                  </div>
                 </div>
-                <div className={classes.controls}>
-                  <IconButton
-                    onClick={() => removeItem(value.id)}
-                    size="small"
-                    color="primary"
-                  >
-                    <RemoveIcon />
-                  </IconButton>
-                  <Typography className={classes.quantity}>
-                    {value.quantity}
-                  </Typography>
-                  <IconButton
-                    onClick={() =>
-                      addItem(
-                        value.id,
-                        value.title,
-                        value.description,
-                        value.price,
-                        value.photo
-                      )
-                    }
-                    size="small"
-                    color="primary"
-                  >
-                    <AddIcon />
-                  </IconButton>
-                </div>
-              
               </div>
-            </div>
-          ))}
-      </div>
-
+            ))}
+        </div>
+      ) : (
+        <>
+          <img
+            style={{ width: "10%", paddingTop: "inherit" }}
+            src={basketEmpty}
+          />
+          <div className={classes.body}>سبد خرید خالی است</div>
+        </>
+      )}
       <Divider />
       <div className={classes.footer}>
         <Typography variant="h6">هزینه کل: {totalPrice} تومان</Typography>
