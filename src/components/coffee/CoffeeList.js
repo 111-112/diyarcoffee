@@ -307,6 +307,7 @@ const CoffeeList = () => {
                     style={{
                       color: "#300403",
                       textAlign: "center",
+                      fontFamily:"Shabnam",
                       marginTop: "8px",
                       fontWeight: "bold",
                       fontSize: "20px",
@@ -347,13 +348,13 @@ const CoffeeList = () => {
                       style={{ width: "100%" }}
                     />
                     <Typography
-                      style={{ fontWeight: "bold", fontSize: "inherit" }}
+                      style={{ fontWeight: "bold", fontSize: "inherit",fontFamily:"inherit" }}
                       variant="h6"
                     >
                       {item.title}
                     </Typography>
-                    <Typography variant="body2">{item.description}</Typography>
-                    <Typography variant="subtitle1">
+                    <Typography style={{fontFamily:"inherit"}} variant="body2">{item.description}</Typography>
+                    <Typography style={{fontFamily:"inherit"}} variant="subtitle1">
                       قیمت:{item.price} تومان
                     </Typography>
                     <div className={classes.divBtn}>
