@@ -51,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
     fontWeight: "bold",
     width: "100%",
+    fontFamily: "inherit",
     textAlign: "center",
     padding: theme.spacing(1),
     borderTopLeftRadius: "10px",
@@ -133,8 +134,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     backgroundColor: "#a27356",
     color: "white",
+    fontFamily: "inherit",
     fontWeight: "bold",
     fontSize: "20px",
+    borderRadius: "30px",
     "&:hover": {
       backgroundColor: "#a27356bf",
       color: "white",
@@ -143,6 +146,7 @@ const useStyles = makeStyles((theme) => ({
       marginTop: "0",
       color: "#ffffff",
       fontSize: "medium",
+      borderRadius: "30px",
       backgroundColor: "#a27356",
       "&:hover": {
         backgroundColor: "#a27356bf",
@@ -198,6 +202,14 @@ const ShoppingCart = ({
   const ff = () => {
     nav("/order/checkout");
   };
+  function toPersianDigits(input) {
+    const persianDigits = '۰۱۲۳۴۵۶۷۸۹';
+    const str = String(input); 
+    return str.replace(/[0-9]/g, function (w) {
+      return persianDigits[w];
+    });
+  }
+  let persianNumber = toPersianDigits(totalPrice);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1290);
 
   useEffect(() => {
@@ -218,7 +230,7 @@ const ShoppingCart = ({
             سبد خرید ({basketLength})
           </Typography>
           <Button className={classes.button} onClick={ff}>
-            تکمیل سفارش
+           {persianNumber} تومان
           </Button>
         </Paper>
       ) : (
@@ -298,7 +310,7 @@ const ShoppingCart = ({
           )}
           <Divider />
           <div className={classes.footer}>
-            <Typography variant="h6">هزینه کل: {totalPrice} تومان</Typography>
+            <Typography variant="h6">هزینه کل: {persianNumber} تومان</Typography>
             <Button onClick={ff} className={classes.button}>
               تکمیل سفارش
             </Button>
@@ -360,7 +372,7 @@ const ShoppingCart = ({
               <Divider />
               <div className={classes.footerModal}>
                 <Typography variant="h6">
-                  هزینه کل: {totalPrice} تومان
+                  هزینه کل: {persianNumber} تومان
                 </Typography>
               </div>
             </DialogContent>
