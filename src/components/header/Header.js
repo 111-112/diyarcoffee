@@ -76,6 +76,7 @@ function Header() {
   const classes = useStyles();
 
   useEffect(() => {
+    console.log("status",status);
     dispatch(setStatus({ status: table }));
     setTimeout(() => {
       console.log("status", status, "table", table);

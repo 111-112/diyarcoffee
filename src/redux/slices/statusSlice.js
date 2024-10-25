@@ -3,7 +3,7 @@ import { createSelector } from "reselect";
 import { produce } from "immer";
 
 const initialState = {
-  value: null,
+  value: "",
 };
 
 const statusSlice = createSlice({
