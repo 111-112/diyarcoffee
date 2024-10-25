@@ -23,7 +23,8 @@ import {
 } from "../../redux/slices/buyBasket";
 import { useNavigate } from "react-router-dom";
 import basketEmpty from "../../assets/images/logo/basketEmpty.png";
-
+import TableBarOutlinedIcon from "@mui/icons-material/TableBarOutlined";
+import PaidOutlinedIcon from "@mui/icons-material/PaidOutlined";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     width: "100%",
     textAlign: "center",
+    fontFamily: "inherit",
     padding: theme.spacing(1),
     borderTopLeftRadius: "10px",
     borderTopRightRadius: "10px",
@@ -113,6 +115,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#a27356",
     fontWeight: "bold",
     width: "30%",
+    fontFamily: "inherit",
     color: "#ffffff",
     boxShadow:
       "0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12)",
@@ -132,8 +135,7 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
-  btnPlusMinus:{
-   
+  btnPlusMinus: {
     boxShadow:
       "0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12)",
     border: "initial",
@@ -144,8 +146,15 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#a27356",
       color: "white",
     },
-    
-  }
+  },
+  textFooter: {
+    fontFamily: "inherit",
+    fontSize: "large",
+    [theme.breakpoints.down("xs")]: {
+      fontFamily: "inherit",
+      fontSize: "13px",
+    },
+  },
 }));
 
 const BuyBasketPage = () => {
@@ -172,7 +181,7 @@ const BuyBasketPage = () => {
 
   useEffect(() => {
     setData(getBuyBasket);
-    if ( basketBuyLength2 == 0) {
+    if (basketBuyLength2 == 0) {
       dispatch(SWITCH_STATUS_BASKET({ statusBasket: false }));
     }
   }, [getBuyBasket]);
@@ -262,16 +271,16 @@ const BuyBasketPage = () => {
                       style={{
                         display: "flex",
                         fontWeight: "bold",
-                        fontSize: "large",
-                        position:"relative",
-                        
+                        fontSize: "14px",
+                        position: "relative",
+                        fontFamily: "inherit",
                       }}
                       variant="body1"
                     >
                       {value.title}
                     </Typography>
                     <Typography
-                      style={{ display: "flex" }}
+                      style={{ display: "flex", fontFamily: "inherit" }}
                       variant="body2"
                       className={classes.itemPrice}
                     >
@@ -322,8 +331,26 @@ const BuyBasketPage = () => {
       )}
       <Divider />
       <div className={classes.footer}>
-        <Typography variant="h6">هزینه کل: {totalPrice} تومان</Typography>
-        <Typography variant="h6">نوع میز: {status}</Typography>
+        <div style={{ display: "inline-flex" }}>
+          {" "}
+          <PaidOutlinedIcon
+            style={{ color: "#7e5841", paddingTop: "5px", paddingLeft: "5px" }}
+          />{" "}
+          <Typography className={classes.textFooter} variant="h6">
+            هزینه کل: {totalPrice} تومان
+          </Typography>{" "}
+        </div>
+        <br />
+        <div style={{ display: "inline-flex" }}>
+          {" "}
+          <TableBarOutlinedIcon
+            style={{ color: "#7e5841", paddingTop: "5px", paddingLeft: "5px" }}
+          />{" "}
+          <Typography className={classes.textFooter} variant="h6">
+            نوع میز: {status}
+          </Typography>{" "}
+        </div>
+        <br />
         <Button onClick={ff} className={classes.button}>
           پرداخت
         </Button>
