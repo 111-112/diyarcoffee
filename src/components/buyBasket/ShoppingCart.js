@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("md")]: {
       flexDirection: "row",
       justifyContent: "space-between",
+      paddingLeft: "28px",
       width: "100%",
       margin: "0",
       padding: "10px",
@@ -58,11 +59,12 @@ const useStyles = makeStyles((theme) => ({
     borderTopRightRadius: "10px",
     [theme.breakpoints.down("md")]: {
       backgroundColor: "transparent",
+      fontFamily: "inherit",
       color: "black",
-      width: "25%",
+      width: "40%",
       paddingBottom: "30px",
       paddingRight: "40px",
-      paddingTop: "20.5px",
+      paddingTop: "27.5px",
       borderTopLeftRadius: "0",
       borderTopRightRadius: "0",
     },
@@ -136,8 +138,8 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     fontFamily: "inherit",
     fontWeight: "bold",
-    fontSize: "20px",
     borderRadius: "30px",
+    fontSize: "20px",
     "&:hover": {
       backgroundColor: "#a27356bf",
       color: "white",
@@ -230,7 +232,7 @@ const ShoppingCart = ({
             سبد خرید ({basketLength})
           </Typography>
           <Button className={classes.button} onClick={ff}>
-           {persianNumber} تومان
+            {persianNumber} تومان
           </Button>
         </Paper>
       ) : (
@@ -379,8 +381,8 @@ const ShoppingCart = ({
           ) : (
             <div>
               <img
-              style={{width:"20%",paddingRight:"43%"}}
-              className={classes.body}
+                style={{ width: "20%", paddingRight: "43%" }}
+                className={classes.body}
                 src={basketEmpty}
               />
               <div className={classes.body}>سبد خرید خالی است</div>
