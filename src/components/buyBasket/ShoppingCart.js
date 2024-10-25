@@ -324,7 +324,7 @@ const ShoppingCart = ({
         <div className={classes.divDialog}>
           <DialogTitle>
             <div className={classes.headerModal}>
-              <Typography style={{ fontWeight: "bold",fontFamily:"Shabnam" }}>
+              <Typography style={{ fontWeight: "bold" ,fontFamily:"Shabnam"}}>
                 سبد خرید ({basketLength}){" "}
               </Typography>{" "}
             </div>
